@@ -14,11 +14,12 @@ app.use(cors({
 }));
 
 const pool = new pg.Pool({
-    user: 'postgres',
-    host: 'localhost',
-    password: 'saisurya1515',
-    database: 'postgres',
-    port: 5432, 
+    user: 'uyulbcykylwyb2su07sf',
+    host: 'b9khaerapmelvchjwdip-postgresql.services.clever-cloud.com',
+    password: 'GaTEcZ5atQ8i4Pkq9WthxooRhtecoO',
+    database: 'b9khaerapmelvchjwdip',
+    port: 50013,
+
 }); 
 
 app.post('/page1', async (req, res) => {
