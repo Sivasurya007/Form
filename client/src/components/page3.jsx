@@ -11,7 +11,7 @@ function EmployeeTable() {
 
     const fetchEmployees = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/employees');
+            const response = await axios.get('https://form-yknn.onrender.com/employees');
             setEmployees(response.data);
         } catch (error) {
             console.error('Error fetching employees:', error);
