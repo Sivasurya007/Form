@@ -8,27 +8,18 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true // Enable credentials
-  }));
-
-// const pool = new pg.Pool({
-//     user: 'uyulbcykylwyb2su07sf',
-//     host: 'b9khaerapmelvchjwdip-postgresql.services.clever-cloud.com',
-//     password: 'GaTEcZ5atQ8i4Pkq9WthxooRhtecoO',
-//     database: 'b9khaerapmelvchjwdip',
-//     port: 50013,
-
-// }); 
+app.use(cors());
 
 const pool = new pg.Pool({
-    user: 'postgres',
-    host: 'localhost',
-    password: 'saisurya1515',
-    database: 'postgres', 
-    port: 5432,
-});
+     user: 'uyulbcykylwyb2su07sf',
+     host: 'b9khaerapmelvchjwdip-postgresql.services.clever-cloud.com',
+     password: 'GaTEcZ5atQ8i4Pkq9WthxooRhtecoO',
+     database: 'b9khaerapmelvchjwdip',
+     port: 50013,
+
+ }); 
+
+
 
 
 app.post('/page1', async (req, res) => {
