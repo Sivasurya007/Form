@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import '../styles/page2.scss';
 
+import "../styles/page2.scss";
 
 function Page2() {
     const nav=useNavigate();
@@ -24,7 +24,7 @@ function Page2() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`https://form-1-v4ml.onrender.com/page2/${employeeId}`, formData, { withCredentials: true }); // Include employeeId in the URL
+            await axios.post(`http://localhost:5000/page2/${employeeId}`, formData, { withCredentials: true }); // Include employeeId in the URL
             console.log('Data submitted successfully!');
             nav("/page3");
             

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../styles/page1.scss';
+import "../styles/page1.scss";
 
 function Page1() {
     const navigate = useNavigate();
@@ -62,7 +62,7 @@ function Page1() {
     
             
             const { employeeId, ...data } = formData;
-            await axios.post('https://form-1-v4ml.onrender.com/page1', formData);
+            await axios.post('http://localhost:5000/page1', formData);
             
             navigate(`/page2/${employeeId}`, { state: { formData: data } });
             
@@ -88,8 +88,8 @@ function Page1() {
                     <option value="Marketing">Marketing</option>
                 </select>
                 <label htmlFor="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" value={formData.dob} onChange={handleChange} required/>
-                <label style={{marginTop:"10px"}}>Gender:</label>
+                <input type="date" id="dob" name="dob" value={formData.dob} onChange={handleChange} required />
+                <label>Gender:</label>
                 <div className="gender-label">
                     <input type="radio" id="male" name="gender" value="male" checked={formData.gender === 'male'} onChange={handleChange} required />
                     <label htmlFor="male">Male</label>
@@ -119,5 +119,3 @@ function Page1() {
 }
 
 export default Page1;
-
-
