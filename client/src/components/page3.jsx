@@ -1,27 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/page3.scss';
+import "../styles/page3.scss";
 
-function EmployeeTable() {
+function Employee() {
     const [employees, setEmployees] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        const fetchEmployees = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/getdata');
+                setEmployees(response.data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error:', error);
+                setError('An error occurred while fetching data.');
+                setLoading(false);
+            }
+        };
         fetchEmployees();
     }, []);
 
-    const fetchEmployees = async () => {
-        try {
-            const response = await axios.get("https://form-3.onrender.com/employees");
-            setEmployees(response.data);
-        } catch (error) {
-            console.error('Error fetching employees:', error);
-        }
-    };
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
-        <div>
+        <div className="container">
             <h1>Employee Details</h1>
-            <table>
+            <table className="employee-table">
                 <thead>
                     <tr>
                         <th>Employee Name</th>
@@ -36,15 +48,15 @@ function EmployeeTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {employees.map(employee => (
-                        <tr key={employee.employeeidnumber}>
+                    {employees.map((employee, index) => (
+                        <tr key={index}>
                             <td>{employee.employeename}</td>
                             <td>{employee.employeeidnumber}</td>
                             <td>{employee.department}</td>
                             <td>{new Date(employee.dateofbirth).toLocaleDateString()}</td>
                             <td>{employee.gender}</td>
                             <td>{employee.designation}</td>
-                            <td>{employee.salary}</td>
+                            <td>$ {employee.salary}</td>
                             <td>{employee.phone_number}</td>
                             <td>{employee.address}</td>
                         </tr>
@@ -55,5 +67,4 @@ function EmployeeTable() {
     );
 }
 
-export default EmployeeTable;
-
+export default Employee;
